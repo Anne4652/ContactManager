@@ -1,0 +1,56 @@
+<input type="file" (change)="uploadFile($event)" />
+<button (click)="getEmployees()">Refresh</button>
+
+<div>
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    (input)="applyFilter()"
+    placeholder="Filter by Name"
+  />
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th (click)="sortTable('name')">Name</th>
+      <th (click)="sortTable('dateOfBirth')">Date of Birth</th>
+      <th (click)="sortTable('married')">Married</th>
+      <th (click)="sortTable('phone')">Phone</th>
+      <th (click)="sortTable('salary')">Salary</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of filteredEmployees">
+      <td
+        contenteditable="true"
+        (input)="updateEmployee(employee)"
+        [textContent]="employee.name"
+      ></td>
+      <td
+        contenteditable="true"
+        (input)="updateEmployee(employee)"
+        [textContent]="employee.dateOfBirth"
+      ></td>
+      <td
+        contenteditable="true"
+        (input)="updateEmployee(employee)"
+        [textContent]="employee.married ? 'Yes' : 'No'"
+      ></td>
+      <td
+        contenteditable="true"
+        (input)="updateEmployee(employee)"
+        [textContent]="employee.phone"
+      ></td>
+      <td
+        contenteditable="true"
+        (input)="updateEmployee(employee)"
+        [textContent]="employee.salary"
+      ></td>
+      <td>
+        <button (click)="deleteEmployee(employee.id)">X</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
